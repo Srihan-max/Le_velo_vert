@@ -1,0 +1,49 @@
+<% content_for :title, "Gestion des vélos - Admin" %>
+
+<div class="admin-page">
+  <div class="page-header-admin">
+    <h1>🚴 Gestion des vélos</h1>
+    <%= link_to "➕ Ajouter un vélo", new_admin_velo_path, class: "btn btn-primary" %>
+  </div>
+  
+  <% if @velos.any? %>
+    <div class="table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Type</th>
+            <th>Tarif/heure</th>
+            <th>Tarif/jour</th>
+            <th>Disponible</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @velos.each do |velo| %>
+            <tr>
+              <td><strong><%= velo.nom %></strong></td>
+              <td><%= velo.type_velo %></td>
+              <td><%= number_to_currency(velo.tarif_heure, unit: "€") %></td>
+              <td><%= number_to_currency(velo.tarif_jour, unit: "€") %></td>
+              <td>
+                <span class="badge <%= velo.disponible ? 'badge-success' : 'badge-danger' %>">
+                  <%= velo.disponible ? 'Oui' : 'Non' %>
+                </span>
+              </td>
+              <td class="actions-cell">
+                <%= link_to "Voir", admin_velo_path(velo), class: "btn btn-small btn-secondary" %>
+                <%= link_to "Éditer", edit_admin_velo_path(velo), class: "btn btn-small btn-primary" %>
+                <%= link_to "Supprimer", admin_velo_path(velo), method: :delete, 
+                    data: { confirm: "Êtes-vous sûr de vouloir supprimer ce vélo ?" }, 
+                    class: "btn btn-small btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="empty-state">Aucun vélo enregistré. <%= link_to "Ajoutez-en un", new_admin_velo_path %>.</p>
+  <% end %>
+</div>

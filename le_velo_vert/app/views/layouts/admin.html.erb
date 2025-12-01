@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Admin - Le Vélo Vert" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+</head>
+<body class="admin-layout">
+  <header class="admin-header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="logo">🛠️ Admin - Le Vélo Vert</h1>
+        <nav class="admin-nav">
+          <%= link_to "Dashboard", admin_root_path %>
+          <%= link_to "Vélos", admin_velos_path %>
+          <%= link_to "Itinéraires", admin_itineraires_path %>
+          <%= link_to "Actualités", admin_actualites_path %>
+          <%= link_to "Réservations", admin_reservations_path %>
+          <%= link_to "Retour au site", root_path, class: "btn-secondary" %>
+          <%= link_to "Déconnexion", admin_logout_path, method: :delete, class: "btn-danger" %>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <% if flash[:notice] %>
+    <div class="flash-notice">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="flash-alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <main class="admin-content">
+    <div class="container">
+      <%= yield %>
+    </div>
+  </main>
+
+  <footer class="admin-footer">
+    <div class="container">
+      <p>&copy; <%= Time.current.year %> Le Vélo Vert - Panel Administrateur</p>
+    </div>
+  </footer>
+</body>
+</html>

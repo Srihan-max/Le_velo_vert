@@ -1,0 +1,89 @@
+<% content_for :title, "Réservation ##{@reservation.id} - Admin" %>
+
+<div class="admin-page">
+  <div class="page-header-admin">
+    <%= link_to "← Retour", admin_reservations_path, class: "back-link" %>
+    <h1>Réservation #<%= @reservation.id %></h1>
+  </div>
+  
+  <div class="detail-card">
+    <h3>Informations client</h3>
+    
+    <div class="detail-row">
+      <strong>Nom complet :</strong>
+      <span><%= @reservation.nom_complet %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Email :</strong>
+      <span><%= mail_to @reservation.email %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Téléphone :</strong>
+      <span><a href="tel:<%= @reservation.telephone %>"><%= @reservation.telephone %></a></span>
+    </div>
+  </div>
+  
+  <div class="detail-card">
+    <h3>Détails de la réservation</h3>
+    
+    <div class="detail-row">
+      <strong>Vélo :</strong>
+      <span><%= @reservation.velo.nom %> (<%= @reservation.velo.type_velo %>)</span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Du :</strong>
+      <span><%= l(@reservation.date_debut, format: :long) %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Au :</strong>
+      <span><%= l(@reservation.date_fin, format: :long) %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Durée :</strong>
+      <span><%= @reservation.duree_jours %> jour(s)</span>
+    </div>
+    
+    <% if @reservation.commentaire.present? %>
+      <div class="detail-row">
+        <strong>Commentaire :</strong>
+        <span><%= simple_format(@reservation.commentaire) %></span>
+      </div>
+    <% end %>
+    
+    <div class="detail-row">
+      <strong>Réservé le :</strong>
+      <span><%= l(@reservation.created_at, format: :long) %></span>
+    </div>
+  </div>
+  
+  <div class="detail-card">
+    <h3>Estimation tarifaire</h3>
+    
+    <div class="detail-row">
+      <strong>Tarif journalier :</strong>
+      <span><%= number_to_currency(@reservation.velo.tarif_jour, unit: "€") %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Nombre de jours :</strong>
+      <span><%= @reservation.duree_jours %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Total estimé :</strong>
+      <span class="price-highlight">
+        <%= number_to_currency(@reservation.velo.tarif_jour * @reservation.duree_jours, unit: "€") %>
+      </span>
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= link_to "🗑️ Supprimer cette réservation", admin_reservation_path(@reservation), 
+        method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
+  </div>
+</div>

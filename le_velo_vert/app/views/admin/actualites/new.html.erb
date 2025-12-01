@@ -1,0 +1,42 @@
+<% content_for :title, "Nouvelle actualité - Admin" %>
+
+<div class="admin-page">
+  <div class="page-header-admin">
+    <h1><%= @actualite.new_record? ? "➕ Nouvelle actualité" : "✏️ Éditer l'actualité" %></h1>
+  </div>
+  
+  <%= form_with(model: [:admin, @actualite], local: true, class: "admin-form") do |f| %>
+    <% if @actualite.errors.any? %>
+      <div class="form-errors">
+        <h3><%= pluralize(@actualite.errors.count, "erreur") %> :</h3>
+        <ul>
+          <% @actualite.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    
+    <div class="form-group">
+      <%= f.label :titre, "Titre *" %>
+      <%= f.text_field :titre, required: true, placeholder: "Ex: Journée sans voiture 2024" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :date_publication, "Date de publication *" %>
+      <%= f.date_field :date_publication, required: true %>
+      <small class="form-text">L'article sera visible à partir de cette date</small>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :contenu, "Contenu *" %>
+      <%= f.text_area :contenu, rows: 15, required: true, 
+          placeholder: "Rédigez le contenu de l'article..." %>
+    </div>
+    
+    <div class="form-actions">
+      <%= f.submit @actualite.new_record? ? "Créer l'actualité" : "Mettre à jour", class: "btn btn-primary" %>
+      <%= link_to "Annuler", admin_actualites_path, class: "btn btn-secondary" %>
+    </div>
+  <% end %>
+</div>

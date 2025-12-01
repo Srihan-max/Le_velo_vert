@@ -1,0 +1,100 @@
+<% content_for :title, "Réserver un vélo - Le Vélo Vert" %>
+
+<section class="page-header">
+  <div class="container">
+    <h1>📝 Réserver un vélo</h1>
+    <p>Remplissez le formulaire ci-dessous pour réserver votre vélo</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="reservation-form-container">
+      <%= form_with(model: @reservation, local: true, class: "reservation-form") do |f| %>
+        <% if @reservation.errors.any? %>
+          <div class="form-errors">
+            <h3><%= pluralize(@reservation.errors.count, "erreur") %> à corriger :</h3>
+            <ul>
+              <% @reservation.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <div class="form-section">
+          <h2>Vos informations</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <%= f.label :prenom, "Prénom *" %>
+              <%= f.text_field :prenom, required: true, placeholder: "Ex: Jean" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :nom, "Nom *" %>
+              <%= f.text_field :nom, required: true, placeholder: "Ex: Dupont" %>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <%= f.label :email, "Email *" %>
+              <%= f.email_field :email, required: true, placeholder: "exemple@email.com" %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :telephone, "Téléphone *" %>
+              <%= f.text_field :telephone, required: true, placeholder: "06 12 34 56 78", type: 'tel' %>
+            </div>
+          </div>
+        </div>
+        
+        <div class="form-section">
+          <h2>Détails de la réservation</h2>
+          
+          <div class="form-group">
+            <%= f.label :velo_id, "Choisissez votre vélo *" %>
+            <%= f.select :velo_id, 
+                options_from_collection_for_select(@velos, :id, :nom, params[:velo_id]), 
+                { prompt: "Sélectionnez un vélo" },
+                { required: true } %>
+            <small class="form-text">Seuls les vélos disponibles sont affichés</small>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <%= f.label :date_debut, "Date de début *" %>
+              <%= f.date_field :date_debut, required: true, min: Date.today %>
+            </div>
+            
+            <div class="form-group">
+              <%= f.label :date_fin, "Date de fin *" %>
+              <%= f.date_field :date_fin, required: true, min: Date.today %>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <%= f.label :commentaire, "Commentaire (optionnel)" %>
+            <%= f.text_area :commentaire, rows: 4, placeholder: "Informations complémentaires, demandes spéciales..." %>
+          </div>
+        </div>
+        
+        <div class="callout callout-info">
+          <h3>📋 Informations importantes</h3>
+          <ul>
+            <li>Une caution de 150€ sera demandée lors du retrait du vélo</li>
+            <li>Le casque est fourni gratuitement sur demande</li>
+            <li>Nous vous contacterons par email ou téléphone pour confirmer votre réservation</li>
+            <li>Les champs marqués d'un * sont obligatoires</li>
+          </ul>
+        </div>
+        
+        <div class="form-actions">
+          <%= f.submit "Valider ma réservation", class: "btn btn-primary btn-large" %>
+          <%= link_to "Annuler", root_path, class: "btn btn-secondary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

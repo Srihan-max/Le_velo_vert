@@ -1,0 +1,47 @@
+<% content_for :title, "Gestion des réservations - Admin" %>
+
+<div class="admin-page">
+  <div class="page-header-admin">
+    <h1>📅 Gestion des réservations</h1>
+  </div>
+  
+  <% if @reservations.any? %>
+    <div class="table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Contact</th>
+            <th>Vélo</th>
+            <th>Du</th>
+            <th>Au</th>
+            <th>Durée</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reservations.each do |reservation| %>
+            <tr>
+              <td><strong><%= reservation.nom_complet %></strong></td>
+              <td>
+                <%= mail_to reservation.email, reservation.email %><br>
+                <small><%= reservation.telephone %></small>
+              </td>
+              <td><%= reservation.velo.nom %></td>
+              <td><%= l(reservation.date_debut, format: :short) %></td>
+              <td><%= l(reservation.date_fin, format: :short) %></td>
+              <td><%= reservation.duree_jours %> jour(s)</td>
+              <td class="actions-cell">
+                <%= link_to "Voir", admin_reservation_path(reservation), class: "btn btn-small btn-secondary" %>
+                <%= link_to "Supprimer", admin_reservation_path(reservation), method: :delete, 
+                    data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-small btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="empty-state">Aucune réservation pour le moment.</p>
+  <% end %>
+</div>

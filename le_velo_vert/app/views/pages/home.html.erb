@@ -1,0 +1,126 @@
+<% content_for :title, "Le Vélo Vert - Location de vélos écologiques" %>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <h2 class="hero-title">Découvrez Paris autrement</h2>
+      <p class="hero-subtitle">Location de vélos pour une mobilité douce et respectueuse de l'environnement</p>
+      <div class="hero-buttons">
+        <%= link_to "Découvrir nos vélos", velos_path, class: "btn btn-primary" %>
+        <%= link_to "Réserver maintenant", new_reservation_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Pourquoi choisir Le Vélo Vert ?</h2>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🌱</div>
+        <h3>Écologique</h3>
+        <p>Participez à la préservation de l'environnement en choisissant le vélo comme moyen de transport.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">💰</div>
+        <h3>Économique</h3>
+        <p>Des tarifs accessibles pour tous, à l'heure ou à la journée.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🚴</div>
+        <h3>Large choix</h3>
+        <p>VTT, vélos de ville, électriques... Trouvez le vélo qui vous convient.</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🗺️</div>
+        <h3>Itinéraires</h3>
+        <p>Découvrez nos parcours recommandés pour tous les niveaux.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Nos vélos disponibles</h2>
+    
+    <div class="velos-grid">
+      <% @velos_disponibles.each do |velo| %>
+        <div class="velo-card">
+          <h3><%= velo.nom %></h3>
+          <p class="velo-type"><%= velo.type_velo %></p>
+          <p class="velo-description"><%= truncate(velo.description, length: 100) %></p>
+          <p class="velo-tarif">
+            <strong><%= number_to_currency(velo.tarif_heure, unit: "€") %></strong>/heure
+            | 
+            <strong><%= number_to_currency(velo.tarif_jour, unit: "€") %></strong>/jour
+          </p>
+          <%= link_to "Voir détails", velo_path(velo), class: "btn btn-small" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="text-center">
+      <%= link_to "Voir tous nos vélos", velos_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Itinéraires recommandés</h2>
+    
+    <div class="itineraires-grid">
+      <% @itineraires_populaires.each do |itineraire| %>
+        <div class="itineraire-card">
+          <h3><%= itineraire.nom %></h3>
+          <div class="itineraire-meta">
+            <span class="badge badge-<%= itineraire.niveau.downcase %>"><%= itineraire.niveau %></span>
+            <span>📏 <%= itineraire.distance_km %> km</span>
+            <span>⏱️ <%= itineraire.duree_formattee %></span>
+          </div>
+          <p><%= truncate(itineraire.description, length: 120) %></p>
+          <%= link_to "Découvrir", itineraire_path(itineraire), class: "btn btn-small" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="text-center">
+      <%= link_to "Voir tous les itinéraires", itineraires_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <h2 class="section-title">Actualités & Événements</h2>
+    
+    <div class="actualites-list">
+      <% @actualites_recentes.each do |actualite| %>
+        <div class="actualite-card">
+          <div class="actualite-date"><%= l(actualite.date_publication, format: :short) %></div>
+          <h3><%= actualite.titre %></h3>
+          <p><%= actualite.resume(150) %></p>
+          <%= link_to "Lire la suite", actualite_path(actualite), class: "btn btn-small" %>
+        </div>
+      <% end %>
+    </div>
+    
+    <div class="text-center">
+      <%= link_to "Toutes les actualités", actualites_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</section>
+
+<section class="section cta-section">
+  <div class="container text-center">
+    <h2>Prêt à pédaler ?</h2>
+    <p>Réservez votre vélo en quelques clics et partez à l'aventure !</p>
+    <%= link_to "Réserver un vélo", new_reservation_path, class: "btn btn-primary btn-large" %>
+  </div>
+</section>

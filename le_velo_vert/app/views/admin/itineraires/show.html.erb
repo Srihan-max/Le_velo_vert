@@ -1,0 +1,36 @@
+<% content_for :title, "#{@itineraire.nom} - Admin" %>
+
+<div class="admin-page">
+  <div class="page-header-admin">
+    <%= link_to "← Retour", admin_itineraires_path, class: "back-link" %>
+    <h1><%= @itineraire.nom %></h1>
+  </div>
+  
+  <div class="detail-card">
+    <div class="detail-row">
+      <strong>Niveau :</strong>
+      <span class="badge badge-<%= @itineraire.niveau.downcase %>"><%= @itineraire.niveau %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Distance :</strong>
+      <span><%= @itineraire.distance_km %> km</span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Durée :</strong>
+      <span><%= @itineraire.duree_formattee %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Description :</strong>
+      <span><%= simple_format(@itineraire.description) %></span>
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= link_to "✏️ Éditer", edit_admin_itineraire_path(@itineraire), class: "btn btn-primary" %>
+    <%= link_to "🗑️ Supprimer", admin_itineraire_path(@itineraire), method: :delete, 
+        data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
+  </div>
+</div>

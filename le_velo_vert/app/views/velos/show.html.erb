@@ -1,0 +1,98 @@
+<% content_for :title, "#{@velo.nom} - Le Vélo Vert" %>
+
+<section class="page-header">
+  <div class="container">
+    <%= link_to "← Retour aux vélos", velos_path, class: "back-link" %>
+    <h1><%= @velo.nom %></h1>
+    <p class="subtitle"><%= @velo.type_velo %></p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="velo-detail">
+
+      <div class="velo-detail-main">
+
+        <!-- 🟦 IMAGE PRINCIPALE DU VÉLO -->
+        <% if @velo.image.attached? %>
+          <div class="velo-image-wrapper">
+            <%= image_tag @velo.image, class: "velo-image" %>
+          </div>
+        <% end %>
+
+        <div class="status-badge">
+          <span class="badge <%= @velo.disponible ? "badge-success" : "badge-danger" %> badge-large">
+            <%= @velo.statut_disponibilite %>
+          </span>
+        </div>
+        
+        <h2>Description</h2>
+        <p class="velo-description-full"><%= @velo.description %></p>
+        
+        <h2>Caractéristiques</h2>
+        <ul class="velo-features">
+          <li><strong>Type :</strong> <%= @velo.type_velo %></li>
+          <li><strong>État :</strong> Excellent (entretenu régulièrement)</li>
+          <li><strong>Équipement :</strong> Éclairage, sonnette, antivol fourni</li>
+        </ul>
+        
+        <h2>Tarifs</h2>
+        <div class="pricing-table">
+          <div class="pricing-row">
+            <span class="pricing-label">Location à l heure</span>
+            <span class="pricing-value"><%= number_to_currency(@velo.tarif_heure, unit: "€") %></span>
+          </div>
+          <div class="pricing-row">
+            <span class="pricing-label">Location à la journée</span>
+            <span class="pricing-value"><%= number_to_currency(@velo.tarif_jour, unit: "€") %></span>
+          </div>
+        </div>
+        
+        <div class="callout callout-info">
+          <p><strong>💡 Bon à savoir :</strong></p>
+          <ul>
+            <li>Casque disponible gratuitement sur demande</li>
+            <li>Possibilité de louer des accessoires (panier, siège enfant...)</li>
+            <li>Caution de 150€ demandée (restituée en fin de location)</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="velo-detail-sidebar">
+        <div class="reservation-box">
+          <h3>Réserver ce vélo</h3>
+          
+          <% if @velo.disponible %>
+            <p class="reservation-info">Ce vélo est actuellement disponible à la location.</p>
+            <%= link_to "Réserver maintenant", new_reservation_path(velo_id: @velo.id), class: "btn btn-primary btn-block" %>
+          <% else %>
+            <p class="reservation-info unavailable">Ce vélo n est pas disponible actuellement. Consultez nos autres vélos ou contactez-nous.</p>
+            <%= link_to "Voir d autres vélos", velos_path, class: "btn btn-secondary btn-block" %>
+          <% end %>
+          
+          <hr>
+          
+          <h4>Besoin d aide ?</h4>
+          <p class="contact-info">
+            📞 <strong>01 23 45 67 89</strong><br>
+            ✉️ <strong>contact@levelopert.fr</strong>
+          </p>
+          
+          <p class="hours-info">
+            <strong>Horaires :</strong><br>
+            Lun-Sam : 9h - 19h<br>
+            Dimanche : 10h - 18h
+          </p>
+        </div>
+        
+        <div class="related-links">
+          <h4>Vous pourriez aussi aimer</h4>
+          <%= link_to "📍 Voir les itinéraires", itineraires_path, class: "related-link" %>
+          <%= link_to "🛡️ Conseils de sécurité", securite_path, class: "related-link" %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

@@ -1,0 +1,49 @@
+<% content_for :title, "Itinéraires - Le Vélo Vert" %>
+
+<section class="page-header">
+  <div class="container">
+    <h1>🗺️ Itinéraires touristiques</h1>
+    <p>Découvrez nos parcours recommandés pour tous les niveaux</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filters">
+      <h3>Filtrer par niveau :</h3>
+      <div class="filter-buttons">
+        <%= link_to "Tous", itineraires_path, class: "btn #{params[:niveau].blank? ? 'btn-primary' : 'btn-secondary'}" %>
+        <% @niveaux.each do |niveau| %>
+          <%= link_to niveau, itineraires_path(niveau: niveau), class: "btn #{params[:niveau] == niveau ? 'btn-primary' : 'btn-secondary'}" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="itineraires-list">
+      <% if @itineraires.any? %>
+        <% @itineraires.each do |itineraire| %>
+          <div class="itineraire-card-large">
+            <div class="itineraire-header">
+              <h3><%= itineraire.nom %></h3>
+              <span class="badge badge-<%= itineraire.niveau.downcase %>"><%= itineraire.niveau %></span>
+            </div>
+            
+            <div class="itineraire-meta">
+              <span class="meta-item">📏 <strong><%= itineraire.distance_km %> km</strong></span>
+              <span class="meta-item">⏱️ <strong><%= itineraire.duree_formattee %></strong></span>
+            </div>
+            
+            <p class="itineraire-description"><%= itineraire.description %></p>
+            
+            <%= link_to "Voir les détails", itineraire_path(itineraire), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="empty-state">
+          <p>Aucun itinéraire ne correspond à votre recherche.</p>
+          <%= link_to "Voir tous les itinéraires", itineraires_path, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

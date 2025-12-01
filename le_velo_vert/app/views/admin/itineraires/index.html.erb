@@ -1,0 +1,42 @@
+<% content_for :title, "Gestion des itinéraires - Admin" %>
+
+<div class="admin-page">
+  <div class="page-header-admin">
+    <h1>🗺️ Gestion des itinéraires</h1>
+    <%= link_to "➕ Ajouter un itinéraire", new_admin_itineraire_path, class: "btn btn-primary" %>
+  </div>
+  
+  <% if @itineraires.any? %>
+    <div class="table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Distance</th>
+            <th>Durée</th>
+            <th>Niveau</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @itineraires.each do |itineraire| %>
+            <tr>
+              <td><strong><%= itineraire.nom %></strong></td>
+              <td><%= itineraire.distance_km %> km</td>
+              <td><%= itineraire.duree_formattee %></td>
+              <td><span class="badge badge-<%= itineraire.niveau.downcase %>"><%= itineraire.niveau %></span></td>
+              <td class="actions-cell">
+                <%= link_to "Voir", admin_itineraire_path(itineraire), class: "btn btn-small btn-secondary" %>
+                <%= link_to "Éditer", edit_admin_itineraire_path(itineraire), class: "btn btn-small btn-primary" %>
+                <%= link_to "Supprimer", admin_itineraire_path(itineraire), method: :delete, 
+                    data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-small btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="empty-state">Aucun itinéraire. <%= link_to "Ajoutez-en un", new_admin_itineraire_path %>.</p>
+  <% end %>
+</div>

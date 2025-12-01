@@ -1,0 +1,36 @@
+<% content_for :title, "#{@actualite.titre} - Admin" %>
+
+<div class="admin-page">
+  <div class="page-header-admin">
+    <%= link_to "← Retour", admin_actualites_path, class: "back-link" %>
+    <h1><%= @actualite.titre %></h1>
+  </div>
+  
+  <div class="detail-card">
+    <div class="detail-row">
+      <strong>Date de publication :</strong>
+      <span><%= l(@actualite.date_publication, format: :long) %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Statut :</strong>
+      <span class="badge <%= @actualite.publie? ? 'badge-success' : 'badge-warning' %>">
+        <%= @actualite.publie? ? 'Publié' : 'Programmé' %>
+      </span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Contenu :</strong>
+      <div class="article-preview">
+        <%= simple_format(@actualite.contenu) %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= link_to "✏️ Éditer", edit_admin_actualite_path(@actualite), class: "btn btn-primary" %>
+    <%= link_to "🗑️ Supprimer", admin_actualite_path(@actualite), method: :delete, 
+        data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
+    <%= link_to "👁️ Voir sur le site", actualite_path(@actualite), class: "btn btn-secondary", target: "_blank" %>
+  </div>
+</div>

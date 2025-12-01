@@ -1,0 +1,91 @@
+<% content_for :title, "#{@itineraire.nom} - Le Vélo Vert" %>
+
+<section class="page-header">
+  <div class="container">
+    <%= link_to "← Retour aux itinéraires", itineraires_path, class: "back-link" %>
+    <h1><%= @itineraire.nom %></h1>
+    <div class="page-header-meta">
+      <span class="badge badge-<%= @itineraire.niveau.downcase %> badge-large"><%= @itineraire.niveau %></span>
+      <span class="meta-large">📏 <%= @itineraire.distance_km %> km</span>
+      <span class="meta-large">⏱️ <%= @itineraire.duree_formattee %></span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="itineraire-detail">
+      <div class="itineraire-detail-main">
+        <h2>Description du parcours</h2>
+        <p class="itineraire-description-full"><%= simple_format(@itineraire.description) %></p>
+        
+        <h2>Informations pratiques</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>📏 Distance</h3>
+            <p><%= @itineraire.distance_km %> kilomètres</p>
+          </div>
+          
+          <div class="info-card">
+            <h3>⏱️ Durée estimée</h3>
+            <p><%= @itineraire.duree_formattee %></p>
+          </div>
+          
+          <div class="info-card">
+            <h3>💪 Niveau</h3>
+            <p><%= @itineraire.niveau %></p>
+          </div>
+          
+          <div class="info-card">
+            <h3>🚴 Type de vélo</h3>
+            <p>
+              <% case @itineraire.niveau %>
+              <% when 'Sportif' %>
+                VTT ou vélo de route recommandé
+              <% when 'Intermédiaire' %>
+                Tous types de vélos
+              <% else %>
+                Vélo de ville ou vélo électrique
+              <% end %>
+            </p>
+          </div>
+        </div>
+        
+        <div class="callout callout-success">
+          <h3>🌟 Nos conseils</h3>
+          <ul>
+            <li>Prévoyez de l'eau en quantité suffisante</li>
+            <li>Vérifiez la météo avant de partir</li>
+            <li>Portez un casque pour votre sécurité</li>
+            <li>Respectez le code de la route et les autres usagers</li>
+            <% if @itineraire.niveau == 'Sportif' %>
+              <li>Cet itinéraire nécessite une bonne condition physique</li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="itineraire-detail-sidebar">
+        <div class="action-box">
+          <h3>Prêt à partir ?</h3>
+          <p>Réservez un vélo adapté à cet itinéraire</p>
+          <%= link_to "Réserver un vélo", new_reservation_path, class: "btn btn-primary btn-block" %>
+          <%= link_to "Voir nos vélos", velos_path, class: "btn btn-secondary btn-block" %>
+        </div>
+        
+        <div class="security-reminder">
+          <h4>🛡️ Sécurité</h4>
+          <p>N'oubliez pas de consulter nos <%= link_to "conseils de sécurité", securite_path %> avant de partir.</p>
+        </div>
+        
+        <div class="contact-box">
+          <h4>Besoin d'informations ?</h4>
+          <p>
+            📞 01 23 45 67 89<br>
+            ✉️ contact@levelopert.fr
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

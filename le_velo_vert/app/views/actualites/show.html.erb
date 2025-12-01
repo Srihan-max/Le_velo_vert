@@ -1,0 +1,23 @@
+<% content_for :title, "#{@actualite.titre} - Le Vélo Vert" %>
+
+<section class="page-header">
+  <div class="container">
+    <%= link_to "← Retour aux actualités", actualites_path, class: "back-link" %>
+    <h1><%= @actualite.titre %></h1>
+    <p class="article-meta">
+      Publié le <%= l(@actualite.date_publication, format: :long) %>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <article class="article-content">
+      <%= simple_format(@actualite.contenu) %>
+    </article>
+    
+    <div class="article-footer">
+      <%= link_to "← Retour aux actualités", actualites_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+</section>

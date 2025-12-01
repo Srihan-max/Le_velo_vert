@@ -1,0 +1,1465 @@
+/*
+ * Le Vélo Vert - Styles principaux
+ * Thème écologique avec tons verts, blancs et bleus
+ */
+
+/* ========== Variables et Reset ========== */
+:root {
+  --primary-green: #2d7a3e;
+  --secondary-green: #4caf50;
+  --light-green: #81c784;
+  --dark-green: #1b5e20;
+  --blue-accent: #2196f3;
+  --light-blue: #bbdefb;
+  --grey: #757575;
+  --light-grey: #f5f5f5;
+  --white: #ffffff;
+  --text-dark: #212121;
+  --text-light: #616161;
+  --border-color: #e0e0e0;
+  --danger: #f44336;
+  --warning: #ff9800;
+  --success: #4caf50;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-dark);
+  background-color: var(--white);
+}
+
+/* ========== Layout ========== */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.main-content {
+  min-height: calc(100vh - 200px);
+}
+
+/* ========== Header ========== */
+.site-header {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+  color: var(--white);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.logo a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.main-nav {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.main-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.main-nav a.btn-primary {
+  background-color: var(--blue-accent);
+  font-weight: bold;
+}
+
+.main-nav a.btn-primary:hover {
+  background-color: #1976d2;
+}
+
+/* ========== Footer ========== */
+.site-footer {
+  background-color: var(--dark-green);
+  color: var(--white);
+  padding: 3rem 0 1rem;
+  margin-top: 4rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h3 {
+  margin-bottom: 1rem;
+  color: var(--light-green);
+}
+
+.footer-section p {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.footer-section a:hover {
+  color: var(--light-green);
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom a {
+  color: var(--light-green);
+  text-decoration: none;
+}
+
+/* ========== Buttons ========== */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: var(--secondary-green);
+  color: var(--white);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-green);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.btn-secondary {
+  background-color: var(--blue-accent);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background-color: #1976d2;
+}
+
+.btn-danger {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+.btn-danger:hover {
+  background-color: #d32f2f;
+}
+
+.btn-small {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.btn-large {
+  padding: 1rem 2.5rem;
+  font-size: 1.1rem;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* ========== Flash Messages ========== */
+.flash-notice,
+.flash-alert {
+  padding: 1rem;
+  margin: 1rem auto;
+  max-width: 1200px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.flash-notice {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.flash-alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* ========== Hero Section ========== */
+.hero {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 50%, var(--blue-accent) 100%);
+  color: var(--white);
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.hero-subtitle {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  opacity: 0.95;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ========== Sections ========== */
+.section {
+  padding: 4rem 0;
+}
+
+.section-alt {
+  background-color: var(--light-grey);
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  color: var(--primary-green);
+}
+
+.text-center {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* ========== Feature Cards ========== */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.feature-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+/* ========== Vélos Grid ========== */
+.velos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.velo-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.velo-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.velo-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+.velo-card h3 {
+  color: var(--primary-green);
+  margin-bottom: 0.5rem;
+}
+
+.velo-type {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.velo-description {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.velo-pricing {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: var(--light-grey);
+  border-radius: 6px;
+}
+
+.price-item {
+  flex: 1;
+  text-align: center;
+}
+
+.price-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  margin-bottom: 0.25rem;
+}
+
+.price-value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--primary-green);
+}
+
+.velo-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.velo-actions .btn {
+  flex: 1;
+}
+
+/* ========== Badges ========== */
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.badge-success {
+  background-color: var(--success);
+  color: var(--white);
+}
+
+.badge-danger {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+.badge-warning {
+  background-color: var(--warning);
+  color: var(--white);
+}
+
+.badge-débutant {
+  background-color: var(--light-green);
+  color: var(--white);
+}
+
+.badge-intermédiaire {
+  background-color: var(--warning);
+  color: var(--white);
+}
+
+.badge-sportif {
+  background-color: var(--danger);
+  color: var(--white);
+}
+
+.badge-large {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+/* ========== Itinéraires ========== */
+.itineraires-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.itineraire-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.itineraire-card h3 {
+  color: var(--primary-green);
+  margin-bottom: 0.75rem;
+}
+
+.itineraire-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.itineraire-card p {
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.itineraires-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.itineraire-card-large {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.itineraire-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.itineraire-header h3 {
+  color: var(--primary-green);
+  font-size: 1.5rem;
+}
+
+.meta-item {
+  margin-right: 1.5rem;
+}
+
+/* ========== Actualités ========== */
+.actualites-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.actualite-card {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.actualite-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.actualite-date {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.actualite-card h3 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+.actualites-list-full {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.actualite-item {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.actualite-date-badge {
+  display: inline-block;
+  background-color: var(--secondary-green);
+  color: var(--white);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.actualite-item h2 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+.actualite-excerpt {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.read-more-link {
+  color: var(--blue-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.read-more-link:hover {
+  text-decoration: underline;
+}
+
+/* ========== Page Headers ========== */
+.page-header {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+  color: var(--white);
+  padding: 3rem 0;
+  margin-bottom: 3rem;
+}
+
+.page-header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.page-header p {
+  font-size: 1.1rem;
+  opacity: 0.95;
+}
+
+.page-header-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.meta-large {
+  font-size: 1.1rem;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.back-link {
+  display: inline-block;
+  color: var(--white);
+  text-decoration: none;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.back-link:hover {
+  opacity: 1;
+}
+
+/* ========== Filters ========== */
+.filters {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.filters h3 {
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+}
+
+.filter-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ========== Detail Pages ========== */
+.velo-detail,
+.itineraire-detail {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+}
+
+.velo-detail-main,
+.itineraire-detail-main {
+  background: var(--white);
+}
+
+.velo-detail-main h2,
+.itineraire-detail-main h2 {
+  color: var(--primary-green);
+  margin: 2rem 0 1rem 0;
+  font-size: 1.8rem;
+}
+
+.velo-description-full,
+.itineraire-description-full {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.velo-features {
+  list-style: none;
+  margin-bottom: 2rem;
+}
+
+.velo-features li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pricing-table {
+  background-color: var(--light-grey);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pricing-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.pricing-row:last-child {
+  border-bottom: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.pricing-value {
+  color: var(--primary-green);
+  font-weight: bold;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.info-card {
+  background-color: var(--light-grey);
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.info-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.info-card p {
+  color: var(--text-light);
+}
+
+/* ========== Sidebar ========== */
+.velo-detail-sidebar,
+.itineraire-detail-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.reservation-box,
+.action-box {
+  background: var(--white);
+  border: 2px solid var(--secondary-green);
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-box h3,
+.action-box h3 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+.reservation-info {
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.reservation-info.unavailable {
+  color: var(--danger);
+}
+
+.contact-info,
+.hours-info {
+  margin: 1rem 0;
+  line-height: 1.8;
+}
+
+.related-links h4,
+.security-reminder h4,
+.contact-box h4 {
+  color: var(--primary-green);
+  margin-bottom: 0.75rem;
+}
+
+.related-link {
+  display: block;
+  padding: 0.75rem;
+  margin-bottom: 0.5rem;
+  background-color: var(--light-grey);
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--text-dark);
+  transition: background-color 0.3s;
+}
+
+.related-link:hover {
+  background-color: var(--light-green);
+  color: var(--white);
+}
+
+/* ========== Callouts ========== */
+.callout {
+  border-left: 4px solid;
+  padding: 1.5rem;
+  margin: 2rem 0;
+  border-radius: 4px;
+}
+
+.callout h3 {
+  margin-bottom: 1rem;
+}
+
+.callout ul,
+.callout ol {
+  margin-left: 1.5rem;
+  line-height: 1.8;
+}
+
+.callout-info {
+  background-color: var(--light-blue);
+  border-color: var(--blue-accent);
+}
+
+.callout-success {
+  background-color: #d4edda;
+  border-color: var(--success);
+}
+
+.callout-warning {
+  background-color: #fff3cd;
+  border-color: var(--warning);
+}
+
+/* ========== Forms ========== */
+.reservation-form-container,
+.admin-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-section {
+  margin-bottom: 2rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.form-section:last-child {
+  border-bottom: none;
+}
+
+.form-section h2 {
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group input[type="date"],
+.form-group input[type="number"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--secondary-green);
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-text {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: auto;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.form-errors {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  border: 1px solid #f5c6cb;
+}
+
+.form-errors h3 {
+  margin-bottom: 0.75rem;
+}
+
+.form-errors ul {
+  margin-left: 1.5rem;
+}
+
+.form-errors li {
+  margin-bottom: 0.5rem;
+}
+
+/* ========== Confirmation Page ========== */
+.confirmation-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.success-message {
+  text-align: center;
+  padding: 3rem;
+  background: linear-gradient(135deg, var(--secondary-green) 0%, var(--light-green) 100%);
+  color: var(--white);
+  border-radius: 8px;
+  margin-bottom: 2rem;
+}
+
+.success-icon {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.reservation-summary {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+.reservation-summary h3 {
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+}
+
+.summary-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-section:last-child {
+  border-bottom: none;
+}
+
+.summary-section h4 {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.summary-section p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.total-estimate {
+  font-size: 1.2rem;
+  color: var(--primary-green);
+  padding-top: 1rem;
+  border-top: 2px solid var(--border-color);
+}
+
+.confirmation-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ========== Security Page ========== */
+.content-page {
+  max-width: 900px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+.security-section {
+  margin-bottom: 3rem;
+}
+
+.security-section h2 {
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+}
+
+.security-item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: var(--white);
+  border-left: 4px solid var(--secondary-green);
+  border-radius: 4px;
+}
+
+.security-item h3 {
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+}
+
+.security-item ul {
+  margin-left: 1.5rem;
+  line-height: 1.8;
+}
+
+.security-item li {
+  margin-bottom: 0.5rem;
+}
+
+/* ========== Admin Layout ========== */
+.admin-layout {
+  background-color: var(--light-grey);
+  min-height: 100vh;
+}
+
+.admin-header {
+  background: linear-gradient(135deg, var(--dark-green) 0%, var(--primary-green) 100%);
+  color: var(--white);
+  padding: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.admin-nav {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-nav a {
+  color: var(--white);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.admin-nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.admin-content {
+  padding: 2rem 0;
+  min-height: calc(100vh - 200px);
+}
+
+.admin-footer {
+  background-color: var(--dark-green);
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 0;
+  margin-top: 3rem;
+}
+
+/* ========== Admin Dashboard ========== */
+.admin-dashboard h1 {
+  color: var(--primary-green);
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.stat-icon {
+  font-size: 3rem;
+}
+
+.stat-content h3 {
+  font-size: 2.5rem;
+  color: var(--primary-green);
+  margin-bottom: 0.25rem;
+}
+
+.stat-content p {
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.stat-content small {
+  color: var(--text-light);
+  font-size: 0.85rem;
+}
+
+.dashboard-section {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-section h2 {
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+}
+
+.dashboard-quick-actions {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-quick-actions h2 {
+  color: var(--primary-green);
+  margin-bottom: 1rem;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ========== Admin Pages ========== */
+.admin-page {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.page-header-admin {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.page-header-admin h1 {
+  color: var(--primary-green);
+  font-size: 2rem;
+}
+
+/* ========== Admin Tables ========== */
+.table-responsive {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+}
+
+.admin-table thead {
+  background-color: var(--primary-green);
+  color: var(--white);
+}
+
+.admin-table th {
+  padding: 1rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.admin-table td {
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.admin-table tr:hover {
+  background-color: var(--light-grey);
+}
+
+.actions-cell {
+  white-space: nowrap;
+}
+
+.actions-cell .btn {
+  margin-right: 0.5rem;
+}
+
+/* ========== Admin Login ========== */
+.admin-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+  padding: 2rem;
+}
+
+.login-container {
+  background: var(--white);
+  padding: 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  max-width: 400px;
+  width: 100%;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.login-header h1 {
+  color: var(--primary-green);
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+}
+
+.login-header p {
+  color: var(--text-light);
+}
+
+.login-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+.login-footer a {
+  color: var(--primary-green);
+  text-decoration: none;
+}
+
+/* ========== Detail Cards ========== */
+.detail-card {
+  background: var(--white);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.detail-card h3 {
+  color: var(--primary-green);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--light-green);
+}
+
+.detail-row {
+  display: flex;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.detail-row:last-child {
+  border-bottom: none;
+}
+
+.detail-row strong {
+  min-width: 200px;
+  color: var(--text-dark);
+}
+
+.detail-row span {
+  flex: 1;
+  color: var(--text-light);
+}
+
+.price-highlight {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--primary-green) !important;
+}
+
+.article-preview {
+  line-height: 1.7;
+  margin-top: 1rem;
+}
+
+.status-badge {
+  margin-bottom: 1.5rem;
+}
+
+/* ========== Empty States ========== */
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-light);
+}
+
+/* ========== CTA Section ========== */
+.cta-section {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--blue-accent) 100%);
+  color: var(--white);
+  padding: 4rem 0;
+}
+
+.cta-section h2 {
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+/* ========== Article Content ========== */
+.article-content {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  margin-bottom: 2rem;
+}
+
+.article-meta {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 0.5rem;
+}
+
+.article-footer {
+  margin-top: 2rem;
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .velo-detail,
+  .itineraire-detail {
+    grid-template-columns: 1fr;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .main-nav {
+    justify-content: center;
+  }
+  
+  .page-header-admin {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-buttons,
+  .form-actions,
+  .confirmation-actions {
+    flex-direction: column;
+  }
+  
+  .hero-buttons .btn,
+  .form-actions .btn {
+    width: 100%;
+  }
+  
+  .velo-pricing {
+    flex-direction: column;
+  }
+  
+  .admin-table {
+    font-size: 0.9rem;
+  }
+  
+  .admin-table th,
+  .admin-table td {
+    padding: 0.75rem 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo {
+    font-size: 1.5rem;
+  }
+  
+  .hero {
+    padding: 3rem 0;
+  }
+  
+  .section {
+    padding: 2rem 0;
+  }
+  
+  .detail-row {
+    flex-direction: column;
+  }
+  
+  .detail-row strong {
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* ========== Print Styles ========== */
+@media print {
+  .site-header,
+  .site-footer,
+  .btn,
+  .flash-notice,
+  .flash-alert {
+    display: none;
+  }
+  
+  body {
+    font-size: 12pt;
+  }
+  
+  .main-content {
+    margin: 0;
+    padding: 0;
+  }
+}

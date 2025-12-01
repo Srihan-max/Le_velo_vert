@@ -1,0 +1,71 @@
+<% content_for :title, "Nos vélos - Le Vélo Vert" %>
+
+<section class="page-header">
+  <div class="container">
+    <h1>🚴 Nos vélos</h1>
+    <p>Découvrez notre gamme complète de vélos pour tous les usages</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="filters">
+      <h3>Filtrer par type :</h3>
+      <div class="filter-buttons">
+        <%= link_to "Tous", velos_path, class: "btn #{params[:type].blank? ? 'btn-primary' : 'btn-secondary'}" %>
+        <% @types.each do |type| %>
+          <%= link_to type, velos_path(type: type), class: "btn #{params[:type] == type ? 'btn-primary' : 'btn-secondary'}" %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="velos-grid">
+      <% if @velos.any? %>
+        <% @velos.each do |velo| %>
+          <div class="velo-card">
+            
+            <!-- 🟩 IMAGE DU VÉLO -->
+            <div class="velo-card-image">
+              <% if velo.image.attached? %>
+                <%= image_tag velo.image, class: "velo-thumbnail" %>
+              <% end %>
+            </div>
+
+            <div class="velo-card-header">
+              <h3><%= velo.nom %></h3>
+              <span class="badge <%= velo.disponible ? 'badge-success' : 'badge-danger' %>">
+                <%= velo.statut_disponibilite %>
+              </span>
+            </div>
+            
+            <p class="velo-type"><%= velo.type_velo %></p>
+            <p class="velo-description"><%= velo.description %></p>
+            
+            <div class="velo-pricing">
+              <div class="price-item">
+                <span class="price-label">Tarif horaire</span>
+                <span class="price-value"><%= number_to_currency(velo.tarif_heure, unit: "€") %></span>
+              </div>
+              <div class="price-item">
+                <span class="price-label">Tarif journalier</span>
+                <span class="price-value"><%= number_to_currency(velo.tarif_jour, unit: "€") %></span>
+              </div>
+            </div>
+            
+            <div class="velo-actions">
+              <%= link_to "Voir détails", velo_path(velo), class: "btn btn-secondary" %>
+              <% if velo.disponible %>
+                <%= link_to "Réserver", new_reservation_path(velo_id: velo.id), class: "btn btn-primary" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="empty-state">
+          <p>Aucun vélo ne correspond à votre recherche.</p>
+          <%= link_to "Voir tous les vélos", velos_path, class: "btn btn-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,44 @@
+<% content_for :title, "Gestion des actualités - Admin" %>
+
+<div class="admin-page">
+  <div class="page-header-admin">
+    <h1>📰 Gestion des actualités</h1>
+    <%= link_to "➕ Nouvelle actualité", new_admin_actualite_path, class: "btn btn-primary" %>
+  </div>
+  
+  <% if @actualites.any? %>
+    <div class="table-responsive">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Date de publication</th>
+            <th>Statut</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @actualites.each do |actualite| %>
+            <tr>
+              <td><strong><%= actualite.titre %></strong></td>
+              <td><%= l(actualite.date_publication, format: :short) %></td>
+              <td>
+                <span class="badge <%= actualite.publie? ? 'badge-success' : 'badge-warning' %>">
+                  <%= actualite.publie? ? 'Publié' : 'Programmé' %>
+                </span>
+              </td>
+              <td class="actions-cell">
+                <%= link_to "Voir", admin_actualite_path(actualite), class: "btn btn-small btn-secondary" %>
+                <%= link_to "Éditer", edit_admin_actualite_path(actualite), class: "btn btn-small btn-primary" %>
+                <%= link_to "Supprimer", admin_actualite_path(actualite), method: :delete, 
+                    data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-small btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <p class="empty-state">Aucune actualité. <%= link_to "Ajoutez-en une", new_admin_actualite_path %>.</p>
+  <% end %>
+</div>

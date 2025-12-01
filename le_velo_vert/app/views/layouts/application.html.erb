@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Le Vélo Vert - Location de vélos écologiques" %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", media: "all" %>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="header-content">
+        <h1 class="logo"><%= link_to "🚴 Le Vélo Vert", root_path %></h1>
+        <nav class="main-nav">
+          <%= link_to "Accueil", root_path %>
+          <%= link_to "Nos Vélos", velos_path %>
+          <%= link_to "Itinéraires", itineraires_path %>
+          <%= link_to "Réserver", new_reservation_path, class: "btn-primary" %>
+          <%= link_to "Sécurité", securite_path %>
+          <%= link_to "Actualités", actualites_path %>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <% if flash[:notice] %>
+    <div class="flash-notice">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="flash-alert">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+
+  <main class="main-content">
+    <%= yield %>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>Le Vélo Vert</h3>
+          <p>Votre partenaire pour une mobilité douce et écologique.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>📍 123 Rue de la Nature, 75000 Paris</p>
+          <p>📞 01 23 45 67 89</p>
+          <p>✉️ contact@levelopert.fr</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Horaires</h3>
+          <p>Lundi - Samedi : 9h - 19h</p>
+          <p>Dimanche : 10h - 18h</p>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Suivez-nous</h3>
+          <p>
+            <a href="#">Facebook</a> | 
+            <a href="#">Instagram</a> | 
+            <a href="#">Twitter</a>
+          </p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; <%= Time.current.year %> Le Vélo Vert - Tous droits réservés | <%= link_to "Espace Admin", admin_login_path %></p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

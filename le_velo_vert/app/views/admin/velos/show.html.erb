@@ -1,0 +1,48 @@
+<% content_for :title, "#{@velo.nom} - Admin" %>
+
+<div class="admin-page">
+  <div class="page-header-admin">
+    <%= link_to "← Retour", admin_velos_path, class: "back-link" %>
+    <h1><%= @velo.nom %></h1>
+  </div>
+  
+  <div class="detail-card">
+    <div class="detail-row">
+      <strong>Type :</strong>
+      <span><%= @velo.type_velo %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Description :</strong>
+      <span><%= @velo.description %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Tarif horaire :</strong>
+      <span><%= number_to_currency(@velo.tarif_heure, unit: "€") %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Tarif journalier :</strong>
+      <span><%= number_to_currency(@velo.tarif_jour, unit: "€") %></span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Disponibilité :</strong>
+      <span class="badge <%= @velo.disponible ? 'badge-success' : 'badge-danger' %>">
+        <%= @velo.statut_disponibilite %>
+      </span>
+    </div>
+    
+    <div class="detail-row">
+      <strong>Créé le :</strong>
+      <span><%= l(@velo.created_at, format: :long) %></span>
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= link_to "✏️ Éditer", edit_admin_velo_path(@velo), class: "btn btn-primary" %>
+    <%= link_to "🗑️ Supprimer", admin_velo_path(@velo), method: :delete, 
+        data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
+  </div>
+</div>

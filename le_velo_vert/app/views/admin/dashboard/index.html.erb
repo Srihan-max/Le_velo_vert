@@ -1,0 +1,88 @@
+<% content_for :title, "Dashboard Admin - Le Vélo Vert" %>
+
+<div class="admin-dashboard">
+  <h1>📊 Tableau de bord</h1>
+  
+  <div class="dashboard-stats">
+    <div class="stat-card">
+      <div class="stat-icon">🚴</div>
+      <div class="stat-content">
+        <h3><%= @total_velos %></h3>
+        <p>Vélos au total</p>
+        <small><%= @velos_disponibles %> disponibles</small>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">📅</div>
+      <div class="stat-content">
+        <h3><%= @total_reservations %></h3>
+        <p>Réservations</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">🗺️</div>
+      <div class="stat-content">
+        <h3><%= @total_itineraires %></h3>
+        <p>Itinéraires</p>
+      </div>
+    </div>
+    
+    <div class="stat-card">
+      <div class="stat-icon">📰</div>
+      <div class="stat-content">
+        <h3><%= @total_actualites %></h3>
+        <p>Actualités</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="dashboard-section">
+    <h2>Réservations récentes</h2>
+    
+    <% if @reservations_recentes.any? %>
+      <div class="table-responsive">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th>Vélo</th>
+              <th>Du</th>
+              <th>Au</th>
+              <th>Durée</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @reservations_recentes.each do |reservation| %>
+              <tr>
+                <td><strong><%= reservation.nom_complet %></strong><br><small><%= reservation.email %></small></td>
+                <td><%= reservation.velo.nom %></td>
+                <td><%= l(reservation.date_debut, format: :short) %></td>
+                <td><%= l(reservation.date_fin, format: :short) %></td>
+                <td><%= reservation.duree_jours %> jour(s)</td>
+                <td>
+                  <%= link_to "Voir", admin_reservation_path(reservation), class: "btn btn-small btn-secondary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      
+      <%= link_to "Voir toutes les réservations →", admin_reservations_path, class: "btn btn-primary" %>
+    <% else %>
+      <p class="empty-state">Aucune réservation pour le moment.</p>
+    <% end %>
+  </div>
+  
+  <div class="dashboard-quick-actions">
+    <h2>Actions rapides</h2>
+    <div class="action-buttons">
+      <%= link_to "➕ Ajouter un vélo", new_admin_velo_path, class: "btn btn-primary" %>
+      <%= link_to "➕ Créer un itinéraire", new_admin_itineraire_path, class: "btn btn-primary" %>
+      <%= link_to "➕ Publier une actualité", new_admin_actualite_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+<% content_for :title, "Actualités - Le Vélo Vert" %>
+
+<section class="page-header">
+  <div class="container">
+    <h1>📰 Actualités & Événements</h1>
+    <p>Restez informé de nos dernières nouvelles et événements autour de la mobilité douce</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <% if @actualites.any? %>
+      <div class="actualites-list-full">
+        <% @actualites.each do |actualite| %>
+          <article class="actualite-item">
+            <div class="actualite-date-badge">
+              <%= l(actualite.date_publication, format: "%d %b %Y") %>
+            </div>
+            
+            <h2><%= actualite.titre %></h2>
+            
+            <div class="actualite-excerpt">
+              <%= actualite.resume(300) %>
+            </div>
+            
+            <%= link_to "Lire l'article complet →", actualite_path(actualite), class: "read-more-link" %>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="empty-state">
+        <p>Aucune actualité publiée pour le moment. Revenez bientôt !</p>
+        <%= link_to "Retour à l'accueil", root_path, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</section>

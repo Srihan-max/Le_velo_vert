@@ -1,0 +1,86 @@
+<% content_for :title, "Confirmation de réservation - Le Vélo Vert" %>
+
+<section class="page-header">
+  <div class="container">
+    <h1>✅ Réservation confirmée !</h1>
+    <p>Merci pour votre réservation</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="confirmation-container">
+      <div class="success-message">
+        <div class="success-icon">✓</div>
+        <h2>Votre réservation a été enregistrée avec succès !</h2>
+        <p>Nous vous contacterons bientôt pour confirmer les détails.</p>
+      </div>
+      
+      <div class="reservation-summary">
+        <h3>Récapitulatif de votre réservation</h3>
+        
+        <div class="summary-section">
+          <h4>👤 Vos informations</h4>
+          <p><strong>Nom :</strong> <%= @reservation.nom_complet %></p>
+          <p><strong>Email :</strong> <%= @reservation.email %></p>
+          <p><strong>Téléphone :</strong> <%= @reservation.telephone %></p>
+        </div>
+        
+        <div class="summary-section">
+          <h4>🚴 Vélo réservé</h4>
+          <p><strong>Modèle :</strong> <%= @reservation.velo.nom %></p>
+          <p><strong>Type :</strong> <%= @reservation.velo.type_velo %></p>
+        </div>
+        
+        <div class="summary-section">
+          <h4>📅 Période de location</h4>
+          <p><strong>Du :</strong> <%= l(@reservation.date_debut, format: :long) %></p>
+          <p><strong>Au :</strong> <%= l(@reservation.date_fin, format: :long) %></p>
+          <p><strong>Durée :</strong> <%= @reservation.duree_jours %> jour(s)</p>
+        </div>
+        
+        <% if @reservation.commentaire.present? %>
+          <div class="summary-section">
+            <h4>💬 Votre commentaire</h4>
+            <p><%= @reservation.commentaire %></p>
+          </div>
+        <% end %>
+        
+        <div class="summary-section">
+          <h4>💰 Estimation tarifaire</h4>
+          <p><strong>Tarif journalier :</strong> <%= number_to_currency(@reservation.velo.tarif_jour, unit: "€") %></p>
+          <p><strong>Nombre de jours :</strong> <%= @reservation.duree_jours %></p>
+          <p class="total-estimate">
+            <strong>Estimation totale :</strong> 
+            <%= number_to_currency(@reservation.velo.tarif_jour * @reservation.duree_jours, unit: "€") %>
+          </p>
+          <small>+ Caution de 150€ (restituée en fin de location)</small>
+        </div>
+      </div>
+      
+      <div class="callout callout-info">
+        <h3>📧 Prochaines étapes</h3>
+        <ol>
+          <li>Vous allez recevoir un email de confirmation à <strong><%= @reservation.email %></strong></li>
+          <li>Nous vous contacterons pour finaliser les détails de la réservation</li>
+          <li>Présentez-vous avec une pièce d'identité le jour du retrait</li>
+        </ol>
+      </div>
+      
+      <div class="callout callout-success">
+        <h3>📞 Contact</h3>
+        <p>Pour toute question concernant votre réservation :</p>
+        <p>
+          <strong>Téléphone :</strong> 01 23 45 67 89<br>
+          <strong>Email :</strong> contact@levelopert.fr
+        </p>
+        <p><strong>Horaires :</strong> Lun-Sam 9h-19h, Dim 10h-18h</p>
+      </div>
+      
+      <div class="confirmation-actions">
+        <%= link_to "Retour à l'accueil", root_path, class: "btn btn-primary" %>
+        <%= link_to "Voir nos itinéraires", itineraires_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</section>
