@@ -2,10 +2,15 @@
 REM Script de démarrage rapide pour Le Vélo Vert
 REM Ce script configure et lance l'application Rails
 
+REM Se placer dans le répertoire du script
+cd /d "%~dp0"
+
 echo.
 echo ========================================
 echo   Le Velo Vert - Demarrage rapide
 echo ========================================
+echo.
+echo Repertoire : %CD%
 echo.
 
 REM Vérifier si Ruby est installé
@@ -25,18 +30,8 @@ echo.
 
 REM Vérifier si Rails est installé
 echo [2/6] Verification de Rails...
-rails --version >nul 2>&1
-if %errorlevel% neq 0 (
-    echo [ATTENTION] Rails n'est pas installe
-    echo Installation de Rails en cours...
-    gem install rails -v 7.0.0
-    if %errorlevel% neq 0 (
-        echo [ERREUR] Impossible d'installer Rails
-        pause
-        exit /b 1
-    )
-)
-echo [OK] Rails est installe
+REM Pas besoin de vérifier Rails globalement, on utilisera bundle exec
+echo [OK] Sera installé via bundle
 echo.
 
 REM Installer les gems
@@ -54,7 +49,7 @@ echo.
 REM Créer la base de données si nécessaire
 echo [4/6] Creation de la base de donnees...
 if not exist "db\development.sqlite3" (
-    call rails db:create
+    call bundle exec rails db:create
     if %errorlevel% neq 0 (
         echo [ERREUR] Impossible de creer la base de donnees
         pause
@@ -68,7 +63,7 @@ echo.
 
 REM Exécuter les migrations
 echo [5/6] Execution des migrations...
-call rails db:migrate
+call bundle exec rails db:migrate
 if %errorlevel% neq 0 (
     echo [ERREUR] Erreur lors des migrations
     pause
@@ -79,7 +74,7 @@ echo.
 
 REM Charger les données de démonstration
 echo [6/6] Chargement des donnees de demonstration...
-call rails db:seed
+call bundle exec rails db:seed
 if %errorlevel% neq 0 (
     echo [ATTENTION] Erreur lors du chargement des donnees
     echo Ce n'est pas bloquant, vous pouvez continuer
@@ -108,4 +103,4 @@ pause
 REM Lancer le serveur
 echo Demarrage du serveur Rails...
 echo.
-call rails server
+call bundle exec rails server
